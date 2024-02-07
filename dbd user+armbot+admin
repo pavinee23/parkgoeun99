@@ -1,0 +1,144 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1deb1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- 생성 시간: 24-02-07 12:08
+-- 서버 버전: 10.11.4-MariaDB-1~deb12u1
+-- PHP 버전: 8.2.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- 데이터베이스: `armbotdbd`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `add_armbot`
+--
+
+CREATE TABLE `add_armbot` (
+  `armbot_No` int(13) NOT NULL,
+  `dateIn` date NOT NULL,
+  `armbot_detail` text NOT NULL,
+  `userID` int(11) NOT NULL,
+  `mainte_name` text NOT NULL,
+  `mainte_company` text NOT NULL,
+  `mainte_tel` text NOT NULL,
+  `create_date` text NOT NULL,
+  `create_by` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `add_armbot`
+--
+
+INSERT INTO `add_armbot` (`armbot_No`, `dateIn`, `armbot_detail`, `userID`, `mainte_name`, `mainte_company`, `mainte_tel`, `create_date`, `create_by`) VALUES
+(1, '2024-02-07', '20240207-00001', 19950112, 'JACKSON', 'ABC TECH', '01023654789', '2024-02-07 19:20:00', 'Administrator'),
+(2, '2024-02-07', '20240207-00002', 19950209, 'CAMIN', 'ABC TECH', '01022556667', '2024-02-07 19:22:19', 'Administrator'),
+(3, '2024-02-07', '20240207-00003', 19950115, 'MAWIN', 'ABC TECH', '01023654555', '2024-02-07 19:26:06', 'Administrator'),
+(4, '2024-02-07', '20240207-00004', 19950113, 'LION', 'ABC TECH', '01045699887', '2024-02-07 19:27:19', 'Administrator');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `user`
+--
+
+CREATE TABLE `user` (
+  `userID` int(11) NOT NULL,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `birthday` date NOT NULL,
+  `telephone` text NOT NULL,
+  `email` text NOT NULL,
+  `create_date` text NOT NULL,
+  `create_by` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `user`
+--
+
+INSERT INTO `user` (`userID`, `username`, `password`, `birthday`, `telephone`, `email`, `create_date`, `create_by`) VALUES
+(19950112, 'JACKSON', 'user01', '1995-01-12', '01023654789', 'jackson01@gmail.com', '2024-02-07 20:36:19', 'Administrator'),
+(19950113, 'LION', 'user04', '1995-01-13', '01045699887', 'lion04@gmail.com', '2024-02-07 20:40:24', 'Administrator'),
+(19950115, 'MAWIN', 'user03', '1995-01-15', '01023654555', 'mawin03@gmail.com', '2024-02-07 20:39:30', 'Administrator'),
+(19950209, 'CAMIN', 'user02', '1995-02-09', '01022556667', 'camin02@gmail.com', '2024-02-07 20:38:10', 'Administrator');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `user_admin`
+--
+
+CREATE TABLE `user_admin` (
+  `adminID` int(11) NOT NULL,
+  `adminname` text NOT NULL,
+  `password` text NOT NULL,
+  `birthday` date NOT NULL,
+  `telephone` int(11) NOT NULL,
+  `email` text NOT NULL,
+  `create_date` text NOT NULL,
+  `create_by` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `user_admin`
+--
+
+INSERT INTO `user_admin` (`adminID`, `adminname`, `password`, `birthday`, `telephone`, `email`, `create_date`, `create_by`) VALUES
+(___,' ',____);
+
+--
+-- 덤프된 테이블의 인덱스
+--
+
+--
+-- 테이블의 인덱스 `add_armbot`
+--
+ALTER TABLE `add_armbot`
+  ADD PRIMARY KEY (`armbot_No`);
+
+--
+-- 테이블의 인덱스 `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`userID`);
+
+--
+-- 테이블의 인덱스 `user_admin`
+--
+ALTER TABLE `user_admin`
+  ADD PRIMARY KEY (`adminID`);
+
+--
+-- 덤프된 테이블의 AUTO_INCREMENT
+--
+
+--
+-- 테이블의 AUTO_INCREMENT `user`
+--
+ALTER TABLE `user`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19950210;
+
+--
+-- 테이블의 AUTO_INCREMENT `user_admin`
+--
+ALTER TABLE `user_admin`
+  MODIFY `adminID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19901128;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
