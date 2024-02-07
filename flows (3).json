@@ -1,0 +1,220 @@
+[
+    {
+        "id": "a1d33d3d20f4343a",
+        "type": "tab",
+        "label": "Add_armbot",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5d0c52cca38f0c60",
+        "type": "http in",
+        "z": "a1d33d3d20f4343a",
+        "name": "Add_armbot",
+        "url": "/Add_armbot",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "db6aee85d7e6bda5"
+            ]
+        ]
+    },
+    {
+        "id": "b7b6ee816bd4069a",
+        "type": "http response",
+        "z": "a1d33d3d20f4343a",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "db6aee85d7e6bda5",
+        "type": "template",
+        "z": "a1d33d3d20f4343a",
+        "name": "style",
+        "field": "payload.style",
+        "fieldType": "msg",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "body {\n    background-color: #dee9ff;\n}\n\n.registration-form {\n    padding: 50px 0;\n}\n\n.registration-form form {\n    background-color: #fff;\n    max-width: 600px;\n    margin: auto;\n    padding: 50px 70px;\n    border-top-left-radius: 30px;\n    border-top-right-radius: 30px;\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);\n}\n\n.registration-form .form-icon {\n    text-align: center;\n    background-color: #5891ff;\n    border-radius: 50%;\n    font-size: 40px;\n    color: white;\n    width: 100px;\n    height: 100px;\n    margin: auto;\n    margin-bottom: 50px;\n    line-height: 100px;\n}\n\n.registration-form .item {\n    border-radius: 20px;\n    margin-bottom: 25px;\n    padding: 10px 20px;\n}\n\n.registration-form .create-account {\n    border-radius: 30px;\n    padding: 10px 20px;\n    font-size: 18px;\n    font-weight: bold;\n    background-color: #5791ff;\n    border: none;\n    color: white;\n    margin-top: 20px;\n}\n\n.registration-form .social-media {\n    max-width: 600px;\n    background-color: #fff;\n    margin: auto;\n    padding: 35px 0;\n    text-align: center;\n    border-bottom-left-radius: 30px;\n    border-bottom-right-radius: 30px;\n    color: #9fadca;\n    border-top: 1px solid #dee9ff;\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);\n}\n\n.registration-form .social-icons {\n    margin-top: 30px;\n    margin-bottom: 16px;\n}\n\n.registration-form .social-icons a {\n    font-size: 23px;\n    margin: 0 3px;\n    color: #5691ff;\n    border: 1px solid;\n    border-radius: 50%;\n    width: 45px;\n    display: inline-block;\n    height: 45px;\n    text-align: center;\n    background-color: #fff;\n    line-height: 45px;\n}\n\n.registration-form .social-icons a:hover {\n    text-decoration: none;\n    opacity: 0.6;\n}\n\n@media (max-width: 576px) {\n    .registration-form form {\n        padding: 50px 20px;\n    }\n\n    .registration-form .form-icon {\n        width: 70px;\n        height: 70px;\n        font-size: 30px;\n        line-height: 70px;\n    }\n}",
+        "output": "str",
+        "x": 330,
+        "y": 60,
+        "wires": [
+            [
+                "295a8a557d02bc27"
+            ]
+        ]
+    },
+    {
+        "id": "295a8a557d02bc27",
+        "type": "template",
+        "z": "a1d33d3d20f4343a",
+        "name": "Header",
+        "field": "payload.header",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "ARMBOT CONTORL SYSTEM",
+        "output": "str",
+        "x": 500,
+        "y": 60,
+        "wires": [
+            [
+                "38555d3de272061f"
+            ]
+        ]
+    },
+    {
+        "id": "38555d3de272061f",
+        "type": "template",
+        "z": "a1d33d3d20f4343a",
+        "name": "Add_armbot",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n\n<head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title></title>\n    <link href=\"https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css\"\n        rel=\"stylesheet\">\n    <!-- Use either Bootstrap 4 or Bootstrap 5, not both -->\n    <!-- <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\"> -->\n    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css\">\n    <link rel=\"stylesheet\" href=\"assets/css/style.css\">\n    <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>\n\n<style>\n    {{payload.style}}\n</style>\n</head>\n<body>\n    <div class=\"registration-form\">\n        \n        <form method=\"post\" action=\"/record_addarmbot\" ajax=\"true\">\n            \n            <h1> Enter Armbot Detail </h1>\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control item\" id=\"armbot_No\" name=\"armbot_No\" placeholder=\"Armbot No\" required>\n            </div> \n            <div class=\"form-group\">\n                <h5> Date In </h5>\n                <input type=\"date\" class=\"form-control item\" id=\"dateIn\" name=\"dateIn\" placeholder=\"Date In\" required>\n            </div>\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control item\" id=\"armbot_detail\" name=\"armbot_detail\" placeholder=\"Armbot Detail\" required>\n            </div>\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control item\" id=\"userID\" name=\"userID\" placeholder=\"User ID\"required>\n            </div>\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control item\" id=\"mainte_name\" name=\"mainte_name\" placeholder=\"Maintenane Name\" required>\n            </div>\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control item\" id=\"mainte_company\" name=\"mainte_company\" placeholder=\"Maintenane Company\" required>\n            </div>\n            <div class=\"form-group\">\n                <input type=\"text\" class=\"form-control item\" id=\"mainte_tel\" name=\"mainte_tel\" placeholder=\"Maintenane Telephone\" required>\n            </div>\n            <div class=\"form-group\">\n                <button type=\"submit\" class=\"btn btn-primary create-armbot\">Create Armbot</button>\n            </div>\n        </form> \n    </div>\n\n    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>\n    <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js\">\n    </script>\n    <script src=\"assets/js/script.js\"></script>\n    <div>\n        <span id=\"result\"></span>\n    </div>\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js\"\n        integrity=\"sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL\" crossorigin=\"anonymous\">\n    </script>\n\n    <script>\n        $(document).ready(function (e) {\n            $(\"form[ajax=true]\").submit(function (e) {\n\n                e.preventDefault();\n                var form = $(this);\n                var form_data = $(this).serialize();\n                var form_url = $(this).attr(\"action\");\n                var form_method = $(this).attr(\"method\").toUpperCase();\n\n                $(\"#loadingimg\").show();\n\n                $.ajax({\n                    url: form_url,\n                    type: form_method,\n                    data: form_data,\n                    cache: false,\n                    success: function (returnhtml) {\n                        $(\"#result\").html(returnhtml);\n                        $(\"#loadingimg\").hide();\n                        Swal.fire({\n                            title: \"Success\",\n                            text: \"Add Armbot Success\",\n                            icon: \"success\"\n                        }).then((result) => {\n                            if (result.isConfirmed) {\n                                form[0].reset();\n                                $(\"#result\").hide();\n                            }\n                        });\n                    }\n                });\n\n            });\n\n        });\n    </script>\n\n</body>\n\n</html>",
+        "output": "str",
+        "x": 670,
+        "y": 60,
+        "wires": [
+            [
+                "b7b6ee816bd4069a"
+            ]
+        ]
+    },
+    {
+        "id": "b87dd5e18b1d0662",
+        "type": "http in",
+        "z": "a1d33d3d20f4343a",
+        "name": "record_addarmbot",
+        "url": "/record_addarmbot",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "b5d22010dd619555",
+                "88ce28850028c094"
+            ]
+        ]
+    },
+    {
+        "id": "b5d22010dd619555",
+        "type": "function",
+        "z": "a1d33d3d20f4343a",
+        "name": "record_addarmbot",
+        "func": "var dt = new Date();\nvar yy = dt.getFullYear();\nvar mm = (dt.getMonth() + 1);\nvar dd = dt.getDate();\nvar hh = dt.getHours();\nvar mins = dt.getMinutes();\nvar ss = dt.getSeconds();\n\nvar m = (mm < 10) ? \"0\" + mm : mm;\nvar d = dd < 10 ? \"0\" + dd : dd;\nvar h = hh < 10 ? \"0\" + hh : hh;\nvar mi = mins < 10 ? \"0\" + mins : mins;\nvar s = ss < 10 ? \"0\" + ss : ss;\n\nvar dates = yy + \"-\" + m + \"-\" + d + \" \" + h + \":\" + mi + \":\" + s;\n\nvar newMsg = {\n    \"payload\": {\n        \"armbot_No\": msg.payload.armbot_No,\n        \"dateIn\": msg.payload.dateIn,\n        \"armbot_detail\": msg.payload.armbot_detail,\n        \"userID\": msg.payload.userID,\n        \"mainte_name\": msg.payload.mainte_name,\n        \"mainte_company\": msg.payload.mainte_company,\n        \"mainte_tel\": msg.payload.mainte_tel,\n        \"create_date\": dates,\n        \"create_by\": \"Administrator\"\n       \n    },\n    \"topic\": `INSERT INTO add_armbot(armbot_No, dateIn, armbot_detail, userID, mainte_name, mainte_company, mainte_tel, create_date, create_by) VALUES ('${msg.payload.armbot_No}', '${msg.payload.dateIn}', '${msg.payload.armbot_detail}', '${msg.payload.userID}', '${msg.payload.mainte_name}', '${msg.payload.mainte_company}', '${msg.payload.mainte_tel}', '${dates}', 'Administrator')`\n    };\nreturn newMsg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "1f73505f660ec79c"
+            ]
+        ]
+    },
+    {
+        "id": "3e06c6122eaa78c2",
+        "type": "debug",
+        "z": "a1d33d3d20f4343a",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3c0f42f41e555215",
+        "type": "function",
+        "z": "a1d33d3d20f4343a",
+        "name": "Result",
+        "func": "msg.payload = \"Result: \" +msg.payload\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "6c1d36e88a37495c"
+            ]
+        ]
+    },
+    {
+        "id": "88ce28850028c094",
+        "type": "json",
+        "z": "a1d33d3d20f4343a",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "3c0f42f41e555215"
+            ]
+        ]
+    },
+    {
+        "id": "6c1d36e88a37495c",
+        "type": "http response",
+        "z": "a1d33d3d20f4343a",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1f73505f660ec79c",
+        "type": "mysql",
+        "z": "a1d33d3d20f4343a",
+        "mydb": "924b8d7da0be6502",
+        "name": "",
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "3e06c6122eaa78c2"
+            ]
+        ]
+    },
+    {
+        "id": "924b8d7da0be6502",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "armbotdbd",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
