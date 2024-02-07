@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+        rel="stylesheet">
+    <!-- Use either Bootstrap 4 or Bootstrap 5, not both -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+    {{payload.style}}
+</style>
+</head>
+<body>
+    <div class="registration-form">
+        
+        <form method="post" action="/record_addarmbot" ajax="true">
+            
+            <h1> Enter Armbot Detail </h1>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="armbot_No" name="armbot_No" placeholder="Armbot No" required>
+            </div> 
+            <div class="form-group">
+                <h5> Date In </h5>
+                <input type="date" class="form-control item" id="dateIn" name="dateIn" placeholder="Date In" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="armbot_detail" name="armbot_detail" placeholder="Armbot Detail" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="userID" name="userID" placeholder="User ID"required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="mainte_name" name="mainte_name" placeholder="Maintenane Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="mainte_company" name="mainte_company" placeholder="Maintenane Company" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="mainte_tel" name="mainte_tel" placeholder="Maintenane Telephone" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary create-armbot">Create Armbot</button>
+            </div>
+        </form> 
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js">
+    </script>
+    <script src="assets/js/script.js"></script>
+    <div>
+        <span id="result"></span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function (e) {
+            $("form[ajax=true]").submit(function (e) {
+
+                e.preventDefault();
+                var form = $(this);
+                var form_data = $(this).serialize();
+                var form_url = $(this).attr("action");
+                var form_method = $(this).attr("method").toUpperCase();
+
+                $("#loadingimg").show();
+
+                $.ajax({
+                    url: form_url,
+                    type: form_method,
+                    data: form_data,
+                    cache: false,
+                    success: function (returnhtml) {
+                        $("#result").html(returnhtml);
+                        $("#loadingimg").hide();
+                        Swal.fire({
+                            title: "Success",
+                            text: "Add Armbot Success",
+                            icon: "success"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form[0].reset();
+                                $("#result").hide();
+                            }
+                        });
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
