@@ -1,0 +1,32 @@
+var dt = new Date();
+var yy = dt.getFullYear();
+var mm = (dt.getMonth() + 1);
+var dd = dt.getDate();
+var hh = dt.getHours();
+var mins = dt.getMinutes();
+var ss = dt.getSeconds();
+
+var m = (mm < 10) ? "0" + mm : mm;
+var d = dd < 10 ? "0" + dd : dd;
+var h = hh < 10 ? "0" + hh : hh;
+var mi = mins < 10 ? "0" + mins : mins;
+var s = ss < 10 ? "0" + ss : ss;
+
+var dates = yy + "-" + m + "-" + d + " " + h + ":" + mi + ":" + s;
+
+var newMsg = {
+    "payload": {
+        "armbot_No": msg.payload.armbot_No,
+        "dateIn": msg.payload.dateIn,
+        "armbot_detail": msg.payload.armbot_detail,
+        "userID": msg.payload.userID,
+        "mainte_name": msg.payload.mainte_name,
+        "mainte_company": msg.payload.mainte_company,
+        "mainte_tel": msg.payload.mainte_tel,
+        "create_date": dates,
+        "create_by": "Administrator"
+       
+    },
+    "topic": `INSERT INTO add_armbot(armbot_No, dateIn, armbot_detail, userID, mainte_name, mainte_company, mainte_tel, create_date, create_by) VALUES ('${msg.payload.armbot_No}', '${msg.payload.dateIn}', '${msg.payload.armbot_detail}', '${msg.payload.userID}', '${msg.payload.mainte_name}', '${msg.payload.mainte_company}', '${msg.payload.mainte_tel}', '${dates}', 'Administrator')`
+    };
+return newMsg;
