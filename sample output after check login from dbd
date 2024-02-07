@@ -1,0 +1,11 @@
+if (msg.payload.length > 0) {
+    // Login successful
+    msg.payload = 1;
+} else {
+    // Login failed
+    msg.payload = 0;
+    // Optionally, can provide a message for failed login
+    // msg.payload = "Invalid username or password. Please try again.";
+}
+
+return msg;
